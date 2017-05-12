@@ -11,3 +11,9 @@ The project that I have done:
 
 
 Purpose: This repository is used for web development.
+
+Hosted environment: https://zechen-webdev.herokuapp.com/
+
+Project: https://zechen-webdev.herokuapp.com/project/index.html
+
+Assignment: https://zechen-webdev.herokuapp.com/assignment/index.html
