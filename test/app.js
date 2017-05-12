@@ -1,4 +1,4 @@
-module.exports = function(app)
+'module.exports = function(app)
 {
     app.get("/api/test", findAllMessages);
     app.post("/api/test", createMessage);
@@ -8,7 +8,7 @@ module.exports = function(app)
     if(process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely
         var username = process.env.MLAB_USERNAME_WEBDEV; // get from environment
         var password = process.env.MLAB_PASSWORD_WEBDEV;
-        connectionString = 'mongodb://' + sxjzc01 + ':' + zp951013;
+        connectionString = 'mongodb://' + 'sxjzc01' + ':' + 'zp951013';
         connectionString += '@ds159517.mlab.com:59517/heroku_r73v1gq7'; // user yours
     }
 
