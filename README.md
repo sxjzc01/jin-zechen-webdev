@@ -1,8 +1,13 @@
-# web-dev-template
+Hi, everyone. My name is Zechen Jin. I am a CS major undergrate. I come from China.
+I like watching movies, playing video games and reading history. I am willing to make friends with different people.
 
-1. git clone https://github.com/jannunzi/web-dev-template.git
-1. cd web-dev-template
-1. npm install
-1. mongod
-1. node server.js
-1. browse to localhost:3000
+Programming languages: Java, Racket, C++.
+Operating system: Linux, Windows.
+
+The project that I have done:
+1. Tetris
+2. Forbidden Island
+3. Music Editor
+
+
+Purpose: This repository is used for web development.
