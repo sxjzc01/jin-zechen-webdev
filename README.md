@@ -1,4 +1,4 @@
-Hi, everyone. My name is Zechen Jin. I am a CS major undergrate. I come from China.
+Hi, everyone. My name is Zechen Jin. I am a CS major undergraduate. I come from China.
 I like watching movies, playing video games and reading history. I am willing to make friends with different people.
 
 Programming languages: Java, Racket, C++.
