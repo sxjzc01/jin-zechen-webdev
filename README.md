@@ -1,6 +1,8 @@
-Hi, everyone.
-My name is Zechen Jin. I am a CS major undergraduate. I come from China.
-I like playing video game and reading history.
-Also, I am looking for a co-op now.
+# web-dev-template
 
-Purpose of this repository: Web development
+1. git clone https://github.com/jannunzi/web-dev-template.git
+1. cd web-dev-template
+1. npm install
+1. mongod
+1. node server.js
+1. browse to localhost:3000
