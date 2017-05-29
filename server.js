@@ -12,7 +12,4 @@ require ("./test/app.js")(app);
 
 var port = process.env.PORT || 3000;
 
-app.listen(3000);
-
-
-//port
+app.listen(port);
