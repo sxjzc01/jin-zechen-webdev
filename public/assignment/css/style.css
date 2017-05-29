@@ -52,3 +52,11 @@ body {
     padding: 5px;
     border-bottom-left-radius: 10px;
 }
+
+.white {
+    color: white;
+}
+
+.glyphicon {
+    color: white;
+}
