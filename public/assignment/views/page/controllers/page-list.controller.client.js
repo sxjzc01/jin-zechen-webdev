@@ -5,13 +5,18 @@
 
     function pageListController ($location, pageService, $routeParams) {
         var model = this;
-        model.id = $routeParams['uid'];
-        model.wid = $routeParams['websiteId'];
+        model.userId = $routeParams['userId'];
+        model.websiteId = $routeParams['websiteId'];
 
-        function init () {
-            model.pages = pageService.findPageByWebsiteId(model.wid)
+        function init() {
+            pageService
+                .findAllPagesForWebsite(model.websiteId)
+                .then(renderPages);
         }
+        init();
 
-        init()
+        function renderPages(pages) {
+            model.pages = pages;
+        }
     }
 })();

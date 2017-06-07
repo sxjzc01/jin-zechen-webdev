@@ -6,7 +6,7 @@
 
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="#!/user/{{model.id}}/website/{{model.wid}}/page" class="navbar-link pull-left">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link pull-left">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
@@ -41,7 +41,7 @@
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-lg-5 col-md-8 col-xs-10">
-                            <a href="#!/user/{{model.id}}/page/new">
+                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
                                 {{model.page.name}}
                             </a>
                         </div>
@@ -52,7 +52,7 @@
                             2/2/2017
                         </div>
                         <div class="col-xs-1 pull-right">
-                            <a href="#!/user/{{model.id}}/website/{{model.wid}}/page/{{page._id}}">
+                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
                                 <span class="glyphicon glyphicon-cog pull-right"></span>
                             </a>
                         </div>
@@ -62,7 +62,7 @@
 
             </ul>
         </div>
-        <div class="col-xs-12 col-sm-8">
+        <div class="row col-xs-12 col-sm-8">
 
             <label for="name">Name</label>
             <input class="form-control"
@@ -76,11 +76,11 @@
                       class="form-control"> </textarea>
 
             <a class="btn btn-block btn-success"
-               ng-click="model.updatePage(Page)"
-               href="#!/user/{{model.id}}/website/{{model.wid}}/page/{{page._id}}">Update</a>
+               ng-click="model.updatePage(model.pageId, model.page)"
+               href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">Update</a>
             <a class="btn btn-block btn-danger"
-               ng-click="model.delete()"
-               href="#!/user/{{model.id}}/website/{{model.wid}}/page/{{page._id}}">Delete</a>
+               ng-click="model.deletePage(model.pageId)"
+               href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">Delete</a>
         </div>
     </div>
 
@@ -91,7 +91,7 @@
     <div class="container pull-right">
         <div class="row navbar-text pull-right">
             <div class="col-xs-3 text-center">
-                <a href="#!/profile/{{model.id}}" class="navbar-link">
+                <a href="#!/user/{{model.userId}}" class="navbar-link">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

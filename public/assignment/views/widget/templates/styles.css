@@ -18,6 +18,9 @@ body {
     color: black;
 }
 
+.row {
+    padding-left: 10px;
+}
 
 .srollable-left {
     position: absolute;
@@ -41,7 +44,7 @@ body {
     margin-bottom: 10px;
 }
 
-.wd-toolbar {
+.wd-widget > .wd-toolbar {
     position: absolute;
     background-color: white;
     top: 0px;

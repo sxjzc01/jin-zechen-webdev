@@ -41,9 +41,14 @@
         </form>
 
         <a class="btn btn-primary btn-block"
-           href="#!/user/{{model.uid}}/website">Websites</a>
+           href="#!/user/{{model.userId}}/website">Websites</a>
         <a class="btn btn-danger  btn-block"
            href="#!/login">Logout</a>
+        <a ng-click="model.updateUser"
+           class="btn btn-success btn-block">Update</a>
+        <a class="btn btn-block btn-info"
+           ng-click="model.deleteUser"
+           href="#!/login">Delete User</a>
     </div>
 
     <nav class="navbar navbar-default navbar-fixed-bottom">

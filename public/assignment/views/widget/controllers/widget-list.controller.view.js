@@ -3,43 +3,76 @@
         .module('WebAppMaker')
         .controller('widgetListController', widgetListController);
 
-    function widgetListController ($location, widgetService, $routeParams, $sce) {
+    function widgetListController ($location, widgetService, $routeParams, $sce, $scope) {
         var model = this;
 
-        model.id = $routeParams['uid'];
-        model.wid = $routeParams['websiteId']
-        model.pid = $routeParams['pageId']
+        model.userId = $routeParams['userId'];
+        model.websiteId = $routeParams['websiteId'];
+        model.pageId = $routeParams['pageId'];
 
         function init () {
-            model.widgets = widgetService.findWidgetsByPageId(model.pid)
+            widgetService
+                .findWidgetsByPageId(model.pageId)
+                .then(function (widgets) {
+                    model.widgets = widgets
+                })
         }
         init();
 
-        function widgetUrl(widget) {
-            var url = 'views/widget/templates/widget-'+widget.widgetType.toLowerCase()+'.view.client.html';
-            return url;
-        }
+        model.trust = (function (text) {
+            return $sce.trustAsHtml(text)
+        });
 
-        function getYouTubeEmbedUrl(linkUrl) {
-            var embedUrl = "https://www.youtube.com/embed/";
-            var linkUrlParts = linkUrl.split('/');
-            embedUrl += linkUrlParts[linkUrlParts.length - 1];
-            return $sce.trustAsResourceUrl(embedUrl);
-        }
+        model.getYoutubeEmbedUrl = (function (link) {
+            var embedurl = 'http://www.youtube.com/embed/'
+            var urlList = link.split('/')
+            return $sce.trustAsResourceUrl(embedurl + urlList[urlList.length - 1])
+        })
 
-        function trust(html) {
-            // scrubbing the html
-            return $sce.trustAsHtml(html);
-        }
+        model.getUrl = (function (widget) {
+            return 'views/widget/templates/widget-' + (widget.widgetType).toLowerCase() + '.views.client.html'
+        })
 
-
+        $scope.$on('allSorted', function (event, data) {
+            widgetService
+                .sortWidget(data, model.pageId)
+        })
 
         model.editpage = (function (widget) {
             if (widget.widgetType === 'HTML') {
-                $location.url('/user/' + model.id + '/website/' + model.wid + '/page/' + model.pid + '/widget/' + widget._id + '/' + 'heading')
+                $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + widget._id)
             } else {
-            $location.url('/user/' + model.id + '/website/' + model.wid + '/page/' + model.pid + '/widget/' + widget._id + '/' + (widget.widgetType).toLowerCase())
+                $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + widget._id)
             }
         })
+
+        // function init () {
+        //     model.widgets = widgetService.findwidgetsByPageId(model.pageId)
+        // }
+        // init();
+        //
+        // model.trust = (function (text) {
+        //     return $sce.trustAsHtml(text)
+        // });
+        //
+        // model.getYoutubeEmbedUrl = (function (link) {
+        //     var embedurl = 'http://www.youtube.com/embed/';
+        //     var urlList = link.split('/');
+        //     return $sce.trustAsResourceUrl(embedurl + urlList[urlList.length - 1])
+        // });
+        //
+        // model.getUrl = (function (widget) {
+        //     return 'views/widget/templates/widget-' + (widget.widgetType).toLowerCase() + '.views.client.html'
+        // });
+        //
+        // model.editpage = (function (widget) {
+        //     if (widget.widgetType === 'HTML') {
+        //         $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId
+        //             + '/widget/' + widget._id + '/' + 'heading')
+        //     } else {
+        //         $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId
+        //             + '/widget/' + widget._id + '/' + (widget.widgetType).toLowerCase())
+        //     }
+        // })
     }
-})()
+})();

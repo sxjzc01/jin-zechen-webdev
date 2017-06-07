@@ -6,7 +6,7 @@
 
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="#!/user/{{model.id}}/website" class="navbar-link pull-left">
+                <a href="#!/user/{{model.userId}}/website" class="navbar-link pull-left">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
@@ -14,7 +14,7 @@
                 Website-edit
             </a>
             <p class="navbar-text pull-right">
-                <a href="#!/user/{{model.id}}/website" class="navbar-link">
+                <a href="#!/user/{{model.userId}}/website" class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </p>
@@ -46,7 +46,7 @@
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-lg-5 col-md-8 col-xs-10">
-                            <a href="#!/user/{{model.id}}/page/new">
+                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
                                 {{model.website.name}}
                             </a>
                         </div>
@@ -57,7 +57,7 @@
                             2/2/2017
                         </div>
                         <div class="col-xs-1 pull-right">
-                            <a href="#!/user/{{model.id}}/website/">
+                            <a href="#!/user/{{model.userId}}/website/">
                                 <span class="glyphicon glyphicon-cog pull-right"></span>
                             </a>
                         </div>
@@ -67,7 +67,7 @@
 
             </ul>
         </div>
-        <div class="col-xs-12 col-sm-8">
+        <div class="row col-xs-12 col-sm-8">
 
             <label for="name">Name</label>
             <input class="form-control"
@@ -81,11 +81,11 @@
                       class="form-control"> </textarea>
 
             <a class="btn btn-block btn-success"
-               ng-click="model.updateWebsite(website)"
-               href="#!/user/{{model.id}}/website">Update</a>
+               ng-click="model.updateWebsite(model.websiteId, model.website)"
+               href="#!/user/{{model.userId}}/website">Update</a>
             <a class="btn btn-block btn-danger"
-               ng-click="model.delete()"
-               href="#!/user/{{model.id}}/website">Delete</a>
+               ng-click="model.deleteWebsite(model.websiteId)"
+               href="#!/user/{{model.userId}}/website">Delete</a>
         </div>
     </div>
 
@@ -96,7 +96,7 @@
     <div class="container pull-right">
         <div class="row navbar-text pull-right">
             <div class="col-xs-3 text-center">
-                <a href="#!/profile/{{model.id}}" class="navbar-link">
+                <a href="#!/user/{{model.id}}" class="navbar-link">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

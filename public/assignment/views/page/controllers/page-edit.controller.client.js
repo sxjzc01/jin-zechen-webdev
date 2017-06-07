@@ -6,24 +6,46 @@
     function pageEditController($location, pageService, $routeParams) {
 
         var model = this;
-        model.id = $routeParams['uid'];
-        model.wid = $routeParams['websiteId'];
-        model.pid = $routeParams['pageId'];
+        model.userId = $routeParams['userId'];
+        model.websiteId = $routeParams['websiteId'];
+        model.pageId = $routeParams['pageId'];
+
+        model.deletePage = deletePage;
+        model.updatePage = updatePage;
 
         function init () {
-            model.pages = pageService.findPageByWebsiteId(model.wid);
-            model.page = pageService.findPageById(model.pid)
+            pageService
+                .findAllPagesForWebsite(model.websiteId)
+                .then(renderPages);
+
+            pageService
+                .findPageById(model.pageId)
+                .then(renderPage);
         }
         init();
 
-        model.updatePage = (function (name, desc) {
-            var page = {name : name,
-                        description : desc};
-            pageService.updatePage(model.pid, page)
-        });
+        function renderPages(pages) {
+            model.pages = pages;
+        }
 
-        model.delete = (function () {
-            pageService.deletePage(model.pid)
-        })
+        function renderPage(page) {
+            model.page = page;
+        }
+
+        function deletePage(pageId) {
+            pageService
+                .deletePage(pageId)
+                .then(function () {
+                    $location.url('/user/' + model.userId +'/website/' + model.websiteId + '/page');
+                })
+        }
+
+        function updatePage(pageId, page) {
+            pageService
+                .updatePage(pageId, page)
+                .then(function () {
+                    $location.url('/user/' + model.userId +'/website/' + model.websiteId + '/page');
+                })
+        }
     }
 })();

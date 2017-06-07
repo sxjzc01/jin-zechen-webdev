@@ -8,27 +8,36 @@
         var model = this;
 
         model.register = (function (username, password, password2) {
-            console.log('1');
-            var user = userService.findUserByUsername(username);
-            if (username === null || username === '' || typeof username === 'undefined') {
-                model.message = "Can't have empty fields!";
-                return
+
+            if(username === null || username === '' || typeof username === 'undefined') {
+                model.error = 'username is required';
+                return;
             }
-            if (user !== null) {
-                model.message = 'Username already exist!';
-                return
+
+            if(password !== password2 || password === null || typeof password === 'undefined') {
+                model.error = "passwords must match";
+                return;
             }
-            if (password === password2) {
-                var newUser = {username: username,
-                    password: password};
-                newUser = userService.createUser(newUser);
-                console.log(2);
-                model.message = "Success!";
-                $location.url('/profile/' + newUser._id)
-            } else {
-                model.message = "Passwords must match";
-                return
-            }
+
+            userService
+                .findUserByUsername(username)
+                .then(
+                    function () {
+                        model.error = "sorry, that username is taken";
+                    },
+                    function () {
+                        var newUser = {
+                            username: username,
+                            password: password
+                        };
+                        return userService
+                            .createUser(newUser);
+                    }
+                )
+                .then(function (user) {
+                    $location.url('/user/' + user._id);
+                });
+
         })
     }
 })();

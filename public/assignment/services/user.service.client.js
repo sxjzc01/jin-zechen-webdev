@@ -2,78 +2,77 @@
     angular
         .module('WebAppMaker')
         .factory('userService', userService);
-    function userService () {
-        var users = [
-            {_id: '123', username: 'alice', password: 'alice', firstName: 'Alice', lastName: 'Wonder'},
-            {_id: '234', username: 'bob', password: 'bob', firstName: 'Bob', lastName: 'Marley'},
-            {_id: '345', username: 'charly', password: 'charly', firstName: 'Charly', lastName: 'Garcia'},
-            {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose', lastName: 'Annunzi'}
-        ];
 
-        return {
-            "createUser"    : createUser,
-            "findUserById"  : findUserById,
-            "findUserByUsername"    : findUserByUsername,
-            "findUserByCredentials" : findUserByCredentials,
-            "updateUser"    : updateUser,
-            "deleteUser"    : deleteUser
+
+    function userService($http) {
+        var api = {
+            createUser: createUser,
+            findUserById: findUserById,
+            findUserByUsername: findUserByUsername,
+            findUserByCredentials: findUserByCredentials,
+            deleteUser: deleteUser,
+            updateUser: updateUser
+
         };
+        return api;
 
-        function createUser (user) {
-            user._id = (new Date()).getTime() + '';
-            user.created = new Date();
-            users.push(user);
-            return user
+        function deleteUser(userId) {
+            var url = "/api/assignment/user/"+userId;
+            return $http.delete(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
-        function findUserById (id) {
-            for (var u in users) {
-                if (users[u]._id === id) {
-                    return users[u]
-                }
-            }
-            return null
+        function updateUser(userId, user) {
+            var url = "/api/assignment/user/"+userId;
+            return $http.put(url, user)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
-        function findUserByUsername (username) {
-            for (var u in users) {
-                if (users[u].username === username) {
-                    return users[u]
-                }
-            }
-            return null
+        function createUser(user) {
+            var url = "/api/assignment/user";
+            return $http.post(url, user)
+                .then(function (response) {
+                    return response.data;
+                });
+            // user._id = (new Date()).getTime() + "";
+            // user.created = new Date();
+            // users.push(user);
+            // return user;
         }
 
-        function findUserByCredentials (username, password) {
-            var user = findUserByUsername(username);
-            if (user !== null) {
-                if (user.password === password) {
-                    return user
-                }
-            } else {
-                return null
-            }
+        function findUserByUsername(username) {
+            var url = "/api/assignment/user?username="+username;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+            // var user = users.find(function (user) {
+            //     return user.username === username;
+            // });
+            // if(typeof user === 'undefined') {
+            //     return null;
+            // }
+            // return user;
         }
 
-        function updateUser (userId, user) {
-            var u = findUserById(userId);
-            if (u !== null) {
-                u.username = user.username;
-                u.firstName = user.firstName;
-                u.lastName = user.lastName;
-                return u
-            } else {
-                return
-            }
+        function findUserById(userId) {
+            var url = "/api/assignment/user/"+userId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
-        function deleteUser (userId) {
-            var userIndex = users.findIndex(function (user) {
-                return (userId === user._id)
-            });
-            if (userIndex >= 0) {
-                users.splice(userIndex, 1)
-            }
+        function findUserByCredentials(username, password) {
+            var url = "/api/assignment/user?username="+username+"&password="+password;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
     }
-})()
+})();

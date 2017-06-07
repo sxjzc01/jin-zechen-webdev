@@ -5,14 +5,21 @@
 
     function pageNewController ($location, pageService, $routeParams) {
         var model = this;
-        model.id = $routeParams['uid'];
-        model.wid = $routeParams['websiteId'];
+        model.userId = $routeParams['userId'];
+        model.websiteId = $routeParams['websiteId'];
+        model.createPage = createPage;
 
         function init () {
-            model.pages = pageService.findPageByWebsiteId(model.wid)
+            pageService
+                .findAllPagesForWebsite(model.websiteId)
+                .then(renderPages);
         }
 
         init();
+
+        function renderPages(pages) {
+            model.pages = pages;
+        }
 
         function findName (name) {
             for (var w in model.websites) {
@@ -23,20 +30,14 @@
             return null
         }
 
-        model.createPage = (function (name, desc) {
-            if (name === null || name === '' || typeof name === undefined) {
-                model.message = "input can't be empty";
-                return
+        function createPage(page) {
+            if (typeof page === 'undefined') {
+                model.error = "Can not create this website";
             }
-            var page = findName(name);
-            if (page !== null) {
-                model.error = 'webname already exist!';
-                return
-            }
-            var newPage = {name : name,
-                           description : desc,
-                           websiteId : model.wid};
-            pageService.createPage(model.wid, newPage)
-        })
+            pageService.createPage(model.websiteId, page)
+                .then(function () {
+                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+                })
+        }
     }
 })()
