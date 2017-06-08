@@ -7,6 +7,12 @@
         var model = this;
         model.searchMovie = searchMovie;
         model.searchDetails = searchDetails;
+        
+        model.getImbdUrl = (function (link) {
+            var embedurl = 'http://www.omdbapi.com/?apikey=852159f0&i/'
+            var urlList = link.split('/')
+            return $sce.trustAsResourceUrl(embedurl + urlList[urlList.length - 1])
+        })
 
         function searchDetails(imdbID) {
             var url = "http://www.omdbapi.com/?apikey=852159f0&i=" + imdbID;
