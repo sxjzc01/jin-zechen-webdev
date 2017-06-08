@@ -1,10 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="pocApp">
 <head>
+    <link href="../vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../vendor/angular/angular.min.js"></script>
+    <script src="imdbapi/app.js"></script>
     <meta charset="UTF-8">
-    <title>Project Home Page</title>
+    <title>Title</title>
 </head>
+
+
 <body>
-    <h1>Project Home Page</h1>
+    <div class="container-fluid"
+         ng-controller="pocController as model">
+
+        <h1>API experiment</h1>
+        <div class="row">
+            <div class="col-xs-6">
+                <h2>Search(Type a name here)</h2>
+                <input ng-model="model.title"
+                       class="form-control"
+                       placeholder="Movie Title">
+
+                <button class="btn btn-primary btn-block"
+                        ng-click="model.searchMovie(model.title)">
+                    Search
+                </button>
+
+                <h2>Search Results</h2>
+
+                <ul class="list-group">
+                    <li ng-click="model.searchDetails(movie.imdbID)"
+                        ng-repeat="movie in model.movies"
+                        class="list-group-item">
+
+                        <img ng-src="{{movie.Poster}}" width="50px"/>
+                        {{movie.Title}}
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-6">
+                <h2>Details</h2>
+                <h3>{{model.movie.title}}</h3>
+                <img ng-src="{{model.movie.Poster}}" width="200px"/>
+                <h3>{{model.movie.Director}}</h3>
+                <p>{{model.movie.Plot}}</p>
+
+                <ul>
+
+                    <li ng-repeat="actor in model.movie.Actors.split(',')">
+                        {{actor}}
+                    </li>
+                </ul>
+                <hr/>
+            </div>
+        </div>
+
+
+    </div>
+
 </body>
+
 </html>
