@@ -3,7 +3,7 @@
         .module('pocApp', [])
         .controller('pocController', pocController)
     
-    function pocController($http) {
+    function pocController($http, $sce) {
         var model = this;
         model.searchMovie = searchMovie;
         model.searchDetails = searchDetails;
