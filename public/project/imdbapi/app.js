@@ -10,7 +10,7 @@
         
 
         function searchDetails(imdbID) {
-            var url = "http://www.omdbapi.com/?apikey=e75522b8&i=" + imdbID;
+            var url = "https://www.omdbapi.com/?apikey=e75522b8&i=" + imdbID;
             $http.jsonp($sce.trustAsResourceUrl(url))
                 .then(function (response) {
                     model.movie = response.data;
@@ -18,7 +18,7 @@
         }
         
         function searchMovie(title) {
-            var url = "http://www.omdbapi.com/?apikey=e75522b8&s=" + title;
+            var url = "https://www.omdbapi.com/?apikey=e75522b8&s=" + title;
             $http.jsonp($sce.trustAsResourceUrl(url))
                 .then(function (response) {
                     console.log(response);
