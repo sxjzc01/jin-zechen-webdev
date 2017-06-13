@@ -1,4 +1,17 @@
+var app = require('../../express');
+var mongoose = require('mongoose');
+mongoose.Promise = require('q').Promise;
+mongoose.connect('mongodb://localhost/webdev_summer1_2017');
 
+require("../model/models.server.js");
+// require('../model/user/user.schema.server.js');
+// require('../model/user/user.model.server.js')(mongoose);
+// require('../model/website/website.schema.server.js');
+// require('../model/website/website.model.server.js')(mongoose);
+// require('../model/page/page.schema.server.js');
+// require('../model/page/page.model.server.js')(mongoose);
+// require('../model/widget/widget.schema.server.js');
+// require('../model/widget/widget.model.server.js')(mongoose);
 
 require('../services/user.service.server');
 require('../services/website.service.server');
@@ -22,4 +35,3 @@ require('../services/widget.service.server');
 // function sayHello() {
 //     console.log('hello');
 // }
-console.log(2);
