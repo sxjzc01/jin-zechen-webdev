@@ -1,4 +1,4 @@
-var app = require('./express');
+// var app = require('./express');
 
 // var express = require('express');
 
@@ -16,7 +16,7 @@ app.use(app.express.static(__dirname + '/public'));
 
 
 
-// require ("./test/app.js")(app);
+require ("./test/app.js")(app);
 
 require ("./assignment/app/app");
 
