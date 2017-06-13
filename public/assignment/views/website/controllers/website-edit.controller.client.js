@@ -9,7 +9,7 @@
         model.userId = $routeParams['userId'];
         model.websiteId = $routeParams['websiteId'];
         model.deleteWebsite = deleteWebsite;
-        // model.updateWebsite = updateWebsite;
+        model.updateWebsite = updateWebsite;
 
         function init () {
             webService
@@ -41,21 +41,13 @@
                 })
         }
 
-        model.updateWebsite = (function (name, description) {
-            if (name === '' || name === null || typeof name === undefined) {
-                model.error = "Must have a name";
-                return
-            }
-            var newWeb = {name: name,
-                description: description};
+        function updateWebsite(websiteId, website) {
             webService
-                .updateWebsite(model.webid, newWeb)
-                .then(function (website) {
-                    model.message = "Updated!";
-                    return website
+                .updateWebsite(websiteId, website)
+                .then(function () {
+                    $location.url('/user/' + model.userId +'/website/');
                 })
-            // webService.updateWebsite(model.webid, newWeb)
-        })
+        }
 
         // function updateWebsite(websiteId, website) {
         //         // webService.updateWebsite(model.webid, newWeb)

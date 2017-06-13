@@ -20,12 +20,14 @@
     </div>
 </nav>
 
-    <div class="container-fluid">
+    <div wd-draggable class="container-fluid">
             <div ng-repeat="widget in model.widgets" class="wd-widget">
-                <div class="wd-toolbar">
-                    <div ng-click="model.editpage(widget)" class="glyphicon glyphicon-cog"></div>
-                </div>
                 <div ng-include="model.getUrl(widget)"></div>
+                <div class="wd-toolbar">
+                    <a ng-click="model.editpage(widget)" class="glyphicon glyphicon-cog"></a>
+
+                </div>
+
             </div>
         </div>
 

@@ -22,8 +22,7 @@
                     .createWidget(model.pageId, newHeader)
                     .then(function (Header) {
                         newHeader = Header;
-                        $location.url('/user/' + model.userId + '/website/'
-                            + model.widgetId + '/page/' + model.pageId + '/widget/' + newHeader._id)
+                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + newHeader._id)
                     })
             }
             if (type === 'image') {
@@ -35,8 +34,7 @@
                     .createWidget(model.pageId, newImage)
                     .then(function (image) {
                         newImage = image;
-                        $location.url('/user/' + model.userId + '/website/'
-                            + model.widgetId + '/page/' + model.pageId + '/widget/' + newImage._id)
+                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + newImage._id)
                     })
             }
             if (type === 'youtube') {
@@ -48,12 +46,30 @@
                     .createWidget(model.pageId, newYoutube)
                     .then(function (youtube) {
                         newYoutube = youtube;
-                        $location.url('/user/' + model.userId + '/website/'
-                            + model.widgetId + '/page/' + model.pageId + '/widget/' + newYoutube._id)
+                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + newYoutube._id)
                         return;
                     })
             }
-            return;
+            if (type === 'html') {
+                var newHtml = {widgetType : 'HTML'}
+                widgetService
+                    .createWidget(model.pageId, newHtml)
+                    .then(function (html) {
+                        newHtml = html
+                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + newHtml._id);
+                        return
+                    })
+            }
+            if (type === 'input') {
+                var newInput = {widgetType : 'INPUT'}
+                widgetService
+                    .createWidget(model.pageId, newInput)
+                    .then(function (input) {
+                        newInput = input
+                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + newInput._id);
+                        return
+                    })
+            }
         })
     
     }

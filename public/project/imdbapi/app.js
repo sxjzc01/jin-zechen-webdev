@@ -7,7 +7,7 @@
         var model = this;
         model.searchMovie = searchMovie;
         model.searchDetails = searchDetails;
-        
+
 
         function searchDetails(imdbID) {
             var url = "https://www.omdbapi.com/?apikey=e75522b8&i=" + imdbID;

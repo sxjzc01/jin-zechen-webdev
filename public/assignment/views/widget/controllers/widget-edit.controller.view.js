@@ -29,8 +29,7 @@
                     .createWidget(model.pageId, newHeader)
                     .then(function (Header) {
                         newHeader = Header;
-                        $location.url('/user/' + model.userId + '/website/'
-                            + model.websiteId + '/page/' + model.pageId + '/widget/' + newHeader._id)
+                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + newHeader._id)
                     })
             }
             if (type === 'image') {
@@ -54,13 +53,34 @@
                     .createWidget(model.pageId, newYoutube)
                     .then(function (youtube) {
                         newYoutube = youtube;
-                        $location.url('/user/' + model.userId + '/website/'
-                            + model.websiteId + '/page/' + model.pageId + '/widget/' + newYoutube._id)
-                        return
+                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + newYoutube._id)
                     })
             }
-            return
-        })
+            if (type === 'html') {
+                var newHtml = {widgetType : 'HTML',
+                    pageId : model.pageId,
+                    width : '100%',
+                    url : ''};
+                widgetService
+                    .createWidget(model.pageId, newHtml)
+                    .then(function (html) {
+                        newHtml = html;
+                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + newHtml._id)
+                    })
+            }
+            if (type === 'input') {
+                var newInput = {widgetType : 'INPUT',
+                    pageId : model.pageId,
+                    width : '100%',
+                    url : ''};
+                widgetService
+                    .createWidget(model.pageId, newInput)
+                    .then(function (input) {
+                        newInput = input;
+                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + newInput._id)
+                    })
+            }
+        });
 
         model.update = (function (type, arg1, arg2) {
             if (type === 'heading') {
@@ -90,17 +110,34 @@
                         return yout
                     })
             }
+            if (type === 'html') {
+                var html = {url : arg1,
+                    width : arg2};
+                widgetService
+                    .updateWidget(model.widgetId, html)
+                    .then(function (htm) {
+                        return htm
+                    })
+            }
+            if (type === 'input') {
+                var html = {url : arg1,
+                    width : arg2};
+                widgetService
+                    .updateWidget(model.widgetId, input)
+                    .then(function (htm) {
+                        return htm
+                    })
+            }
         });
 
         model.delete = (function () {
             widgetService
                 .deleteWidget(model.widgetId)
                 .then(function () {
-                    $location.url('/user/' + model.userId + 
-                        '/website/' + model.wid + '/page/' + model.pageId + '/widget');
+                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
                     return;
                 })
         })
 
     }
-})()
+})();

@@ -11,8 +11,17 @@
             "findWidgetById" : findWidgetById,
             "updateWidget" : updateWidget,
             "deleteWidget" : deleteWidget,
-            'sortWidget' : sortWidget
+            'sortWidget' : sortWidget,
+            "updateFlickr" : updateFlickr
         };
+
+        function updateFlickr (widgetId, widget) {
+            var url = '/api/widget/' + widgetId + '/flickr'
+            return $http.put(url, widget)
+                .then(function (response) {
+                    return response.data
+                })
+        }
 
         function createWidget (pageId, widget) {
             var url = '/api/page/' + pageId + '/widget';
@@ -29,6 +38,8 @@
                     return response.data
                 })
         }
+
+
 
         function sortWidget (data, pageId) {
             var url = '/api/page/' + pageId + '/widget';

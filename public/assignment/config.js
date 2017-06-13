@@ -18,11 +18,7 @@
                 controller:  'registerController',
                 controllerAs:  'model'
             })
-            // .when('/profile', {
-            //     templateUrl:  "views/user/templates/profile.views.client.html",
-            //     controller:  'profileController',
-            //     controllerAs:  'model'
-            // })
+
             .when('/user/:userId', {
                 templateUrl:  "views/user/templates/profile.views.client.html",
                 controller:  'profileController',
@@ -86,6 +82,11 @@
             .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId', {
                 templateUrl:  "views/widget/templates/widget-edit.view.client.html",
                 controller:  'widgetEditController',
+                controllerAs:  'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId/flickr', {
+                templateUrl:  "views/widget/templates/widget-flickr-search.view.client.html",
+                controller:  'flickrController',
                 controllerAs:  'model'
             })
 

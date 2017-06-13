@@ -9,6 +9,7 @@
         model.userId = $routeParams['userId'];
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
+        model.widgetId = $routeParams['widgetId'];
 
         function init () {
             widgetService
@@ -24,19 +25,19 @@
         });
 
         model.getYoutubeEmbedUrl = (function (link) {
-            var embedurl = 'http://www.youtube.com/embed/'
-            var urlList = link.split('/')
+            var embedurl = 'http://www.youtube.com/embed/';
+            var urlList = link.split('/');
             return $sce.trustAsResourceUrl(embedurl + urlList[urlList.length - 1])
-        })
+        });
 
         model.getUrl = (function (widget) {
             return 'views/widget/templates/widget-' + (widget.widgetType).toLowerCase() + '.views.client.html'
-        })
+        });
 
         $scope.$on('allSorted', function (event, data) {
             widgetService
                 .sortWidget(data, model.pageId)
-        })
+        });
 
         model.editpage = (function (widget) {
             if (widget.widgetType === 'HTML') {
@@ -47,7 +48,7 @@
         })
 
         // function init () {
-        //     model.widgets = widgetService.findwidgetsByPageId(model.pageId)
+        //     model.widgets = widgetService.findWidgetsByPageId(model.pageId)
         // }
         // init();
         //
