@@ -10,11 +10,7 @@ if(process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely
 var mongoose = require('mongoose');
 mongoose.Promise = require('q').Promise;
 mongoose.connect(connectionString);
-<<<<<<< HEAD
 
-
-=======
->>>>>>> origin/master
 
 require("../model/models.server.js");
 // require('../model/user/user.schema.server.js');
