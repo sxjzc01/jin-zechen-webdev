@@ -25,7 +25,7 @@
         });
 
         model.getYoutubeEmbedUrl = (function (link) {
-            var embedurl = 'http://www.youtube.com/embed/';
+            var embedurl = 'https://www.youtube.com/embed/';
             var urlList = link.split('/');
             return $sce.trustAsResourceUrl(embedurl + urlList[urlList.length - 1])
         });
