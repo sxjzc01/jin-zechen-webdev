@@ -6,7 +6,7 @@
 
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="#!/user/{{model.userId}}/website" class="navbar-link pull-left">
+                <a href="#!/profile/website" class="navbar-link pull-left">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
@@ -14,7 +14,7 @@
                 Website-edit
             </a>
             <p class="navbar-text pull-right">
-                <a href="#!/user/{{model.userId}}/website" class="navbar-link">
+                <a href="#!/profile" class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </p>
@@ -46,7 +46,7 @@
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-lg-5 col-md-8 col-xs-10">
-                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
+                            <a href="#!/profile/website/{{model.websiteId}}/page">
                                 {{model.website.name}}
                             </a>
                         </div>
@@ -57,7 +57,7 @@
                             2/2/2017
                         </div>
                         <div class="col-xs-1 pull-right">
-                            <a href="#!/user/{{model.userId}}/website/">
+                            <a href="#!/profile/website/">
                                 <span class="glyphicon glyphicon-cog pull-right"></span>
                             </a>
                         </div>
@@ -86,10 +86,10 @@
 
             <a class="btn btn-block btn-success"
                ng-click="model.updateWebsite(model.websiteId, model.website)"
-               >Update</a>
+               href="#!/">Update</a>
             <a class="btn btn-block btn-danger"
                ng-click="model.deleteWebsite(model.websiteId)"
-               href="#!/user/{{model.userId}}/website">Delete</a>
+               href="#!/profile/website">Delete</a>
         </div>
     </div>
 

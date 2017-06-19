@@ -3,10 +3,11 @@
         .module('WebAppMaker')
         .controller('widgetChooseController', widgetChooseController);
 
-    function widgetChooseController ($location, widgetService, $routeParams) {
+    function widgetChooseController (currentUser, $location, widgetService, $routeParams) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        // model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
         model.widgetId = $routeParams['widgetId'];
@@ -22,7 +23,7 @@
                     .createWidget(model.pageId, newHeader)
                     .then(function (Header) {
                         newHeader = Header;
-                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + newHeader._id)
+                        $location.url('/profile/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + newHeader._id)
                     })
             }
             if (type === 'image') {
@@ -34,7 +35,7 @@
                     .createWidget(model.pageId, newImage)
                     .then(function (image) {
                         newImage = image;
-                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + newImage._id)
+                        $location.url('/profile/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + newImage._id)
                     })
             }
             if (type === 'youtube') {
@@ -46,7 +47,7 @@
                     .createWidget(model.pageId, newYoutube)
                     .then(function (youtube) {
                         newYoutube = youtube;
-                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + newYoutube._id)
+                        $location.url('/profile/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + newYoutube._id)
                         return;
                     })
             }
@@ -56,7 +57,7 @@
                     .createWidget(model.pageId, newHtml)
                     .then(function (html) {
                         newHtml = html
-                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + newHtml._id);
+                        $location.url('/profile/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + newHtml._id);
                         return
                     })
             }
@@ -66,7 +67,7 @@
                     .createWidget(model.pageId, newInput)
                     .then(function (input) {
                         newInput = input
-                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + newInput._id);
+                        $location.url('/profile/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + newInput._id);
                         return
                     })
             }

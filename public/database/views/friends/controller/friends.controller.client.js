@@ -13,7 +13,8 @@
             .findUserById(model.userId)
             .then(function (response) {
                 model.friends = response.followList;
-            })
+                model.follows = response.followedBy;
+            });
         
         function addFriend(friendId) {
             var fid = friendId;
@@ -22,7 +23,15 @@
                 .then(function (user) {
                     if (!user) {
                         model.error = "User doesn't exist";
-                    } else {
+                        return;
+                    }
+                    else if(model.friends.indexOf(friendId) > -1) {
+                        model.error = "Friend has already existed";
+                        return;
+                    } else if(friendId === model.userId) {
+                        model.error = "Cannot add yourself";
+                    }
+                    else {
                         console.log(user);
                         userService
                             .addFriend(model.userId, friendId)

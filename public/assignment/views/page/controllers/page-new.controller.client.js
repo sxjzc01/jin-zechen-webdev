@@ -3,9 +3,10 @@
         .module('WebAppMaker')
         .controller('pageNewController', pageNewController);
 
-    function pageNewController ($location, pageService, $routeParams) {
+    function pageNewController (currentUser, $location, pageService, $routeParams) {
         var model = this;
-        model.userId = $routeParams['userId'];
+        // model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.websiteId = $routeParams['websiteId'];
         model.createPage = createPage;
 
@@ -36,7 +37,7 @@
             }
             pageService.createPage(model.websiteId, page)
                 .then(function () {
-                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+                    $location.url('/profile/website/' + model.websiteId + '/page');
                 })
         }
     }

@@ -3,11 +3,11 @@
         .module('WebAppMaker')
         .controller('websiteListController', websiteListController);
 
-    function websiteListController($routeParams, webService) {
+    function websiteListController(currentUser, $routeParams, webService) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
-
+        // model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         function init() {
             model.websites = webService.findAllWebsitesForUser(model.userId);
             webService

@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="#!/user/{{model.userId}}/website" class="navbar-link pull-left">
+                <a href="#!/profile/website" class="navbar-link pull-left">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
@@ -13,7 +13,7 @@
                 Website-new
             </a>
             <p class="navbar-text pull-right">
-                <a href="#!/user/{{model.userId}}/website" class="navbar-link">
+                <a href="#!/profile" class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </p>
@@ -45,7 +45,7 @@
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-lg-5 col-md-8 col-xs-10">
-                            <a href="#!/user/{{model.userId}}/page/new">
+                            <a href="#!/profile/page/new">
                                 {{model.website.name}}
                             </a>
                         </div>
@@ -56,7 +56,7 @@
                             2/2/2017
                         </div>
                         <div class="col-xs-1">
-                            <a href="#!/user/{{model.userId}}/website/{{website._id}}">
+                            <a href="#!/profile/website/{{website._id}}">
                                 <span class="glyphicon glyphicon-cog pull-right"></span>
                             </a>
                         </div>
@@ -96,7 +96,7 @@
     <div class="container pull-right">
         <div class="row navbar-text pull-right">
             <div class="col-xs-3 text-center">
-                <a href="#!/user/{{model.userId}}" class="navbar-link">
+                <a href="#!/profile" class="navbar-link">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

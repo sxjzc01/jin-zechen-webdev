@@ -44,13 +44,29 @@ function deleteUser(userId) {
 }
 
 function addFriend(userId, friendId, $location) {
+    userModel
+        .findUserById(friendId)
+        .then(function (friend) {
+            if (!friend.followedBy) {
+                return userModel.update({_id: friendId}, {$set:
+                    {followedBy: [userId]}})
+            } else {
+                var newUid = mongoose.Types.ObjectId(userId);
+                friend.followedBy.push(newUid);
+                var newUsers = friend.followedBy;
+
+                return userModel.update({_id: friendId}, {$set: {followedBy: friend.followedBy}})
+                    .then(function () {
+                        return userModel.findUserById(friendId);
+                    })
+            }
+        });
     return userModel.findUserById(userId)
         .then(function (user) {
             if (!user.followList) {
                 return userModel.update({_id: userId}, {$set:
                     {followList: [friendId]}})
             } else {
-                console.log(friendId);
                 var newFid = mongoose.Types.ObjectId(friendId);
                 user.followList.push(newFid);
                 var newFriends = user.followList;

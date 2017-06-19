@@ -3,10 +3,11 @@
         .module('WebAppMaker')
         .controller('widgetListController', widgetListController);
 
-    function widgetListController ($location, widgetService, $routeParams, $sce, $scope) {
+    function widgetListController (currentUser, $location, widgetService, $routeParams, $sce, $scope) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        // model.userId = $routeParams['userId'];
+        model.userId = currentUser._id
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
         model.widgetId = $routeParams['widgetId'];
@@ -41,9 +42,9 @@
 
         model.editpage = (function (widget) {
             if (widget.widgetType === 'HTML') {
-                $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + widget._id)
+                $location.url('/profile/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + widget._id)
             } else {
-                $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + widget._id)
+                $location.url('/profile/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + widget._id)
             }
         })
 

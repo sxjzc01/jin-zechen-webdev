@@ -7,7 +7,7 @@ var userSchema = mongoose.Schema({
     roles: [{type: String, default: 'USER', enum: ['USER', 'STUDENT','ADMIN', 'FACULTY']}],
 
     followList: [{type: mongoose.Schema.Types.ObjectId, ref: "UserModel"}],
-    // followedBy: [{type: String}],
+    followedBy: [{type: mongoose.Schema.Types.ObjectId, ref: "UserModel"}],
     // movies: [{type: mongoose.Schema.Types.ObjectId, ref: "WebsiteModel"}],
 
     email: String,

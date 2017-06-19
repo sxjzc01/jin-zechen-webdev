@@ -46,7 +46,7 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .when('/user/:userId/website', {
+            .when('/profile/website', {
                 templateUrl:  "views/website/templates/website-list.views.client.html",
                 controller:  'websiteListController',
                 controllerAs:  'model',
@@ -54,7 +54,7 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .when('/user/:userId/website/new', {
+            .when('/profile/website/new', {
                 templateUrl:  "views/website/templates/website-new.views.client.html",
                 controller:  'websiteNewController',
                 controllerAs:  'model',
@@ -62,7 +62,7 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .when('/user/:userId/website/:websiteId', {
+            .when('/profile/website/:websiteId', {
                 templateUrl:  "views/website/templates/website-edit.views.client.html",
                 controller:  'websiteEditController',
                 controllerAs:  'model',
@@ -70,7 +70,7 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .when('/user/:userId/website/:websiteId/page', {
+            .when('/profile/website/:websiteId/page', {
                 templateUrl:  "views/page/templates/page-list.views.client.html",
                 controller:  'pageListController',
                 controllerAs:  'model',
@@ -78,7 +78,7 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .when('/user/:userId/website/:websiteId/page/new', {
+            .when('/profile/website/:websiteId/page/new', {
                 templateUrl:  "views/page/templates/page-new.views.client.html",
                 controller:  'pageNewController',
                 controllerAs:  'model',
@@ -86,7 +86,7 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .when('/user/:userId/website/:websiteId/page/:pageId', {
+            .when('/profile/website/:websiteId/page/:pageId', {
                 templateUrl:  "views/page/templates/page-edit.views.client.html",
                 controller:  'pageEditController',
                 controllerAs:  'model',
@@ -94,7 +94,7 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .when('/user/:userId/website/:websiteId/page/:pageId/widget', {
+            .when('/profile/website/:websiteId/page/:pageId/widget', {
                 templateUrl:  "views/widget/templates/widget-list.views.client.html",
                 controller:  'widgetListController',
                 controllerAs:  'model',
@@ -102,7 +102,7 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .when('/user/:userId/website/:websiteId/page/:pageId/widget/new', {
+            .when('/profile/website/:websiteId/page/:pageId/widget/new', {
                 templateUrl:  "views/widget/templates/widget-chooser.views.client.html",
                 controller:  'widgetChooseController',
                 controllerAs:  'model',
@@ -125,7 +125,7 @@
             //     controller:  'widgetChooseController',
             //     controllerAs:  'model'
             // })
-            .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId', {
+            .when('/profile/website/:websiteId/page/:pageId/widget/:widgetId', {
                 templateUrl:  "views/widget/templates/widget-edit.view.client.html",
                 controller:  'widgetEditController',
                 controllerAs:  'model',
@@ -133,7 +133,7 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId/flickr', {
+            .when('/profile/website/:websiteId/page/:pageId/widget/:widgetId/flickr', {
                 templateUrl:  "views/widget/templates/widget-flickr-search.view.client.html",
                 controller:  'flickrController',
                 controllerAs:  'model',

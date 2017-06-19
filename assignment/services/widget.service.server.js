@@ -34,6 +34,7 @@ function uploadImage(req, res) {
     }
 
     var userId = req.body.userId;
+
     var websiteId = req.body.websiteId;
     var pageId = req.body.pageId;
 
@@ -48,7 +49,7 @@ function uploadImage(req, res) {
         .findWidgetById(widgetId)
         .then (function (widget) {
             widget.url = '/assignment/upload/' + filename;
-            var callbackUrl = "/assignment/#!/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId
+            var callbackUrl = "/assignment/#!/profile/website/" + websiteId + "/page/" + pageId + "/widget/";
             res.redirect(callbackUrl);
             return widgetModel
                 .updateWidget(widgetId, widget)

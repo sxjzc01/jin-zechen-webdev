@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="#!/user/{{model.userId}}" class="navbar-link pull-left">
+                <a href="#!/profile" class="navbar-link pull-left">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
@@ -30,10 +30,29 @@
             {{model.message}}
         </div>
 
+        <div>
+            <label>
+            Follow List
+            </label>
+        </div>
         <ul class="list-group">
             <li ng-repeat="friend in model.friends track by $index"
                 class="list-group-item">
+                userId:
                 {{friend}}
+            </li>
+        </ul>
+
+        <div>
+            <label>
+                Followed By
+            </label>
+        </div>
+        <ul class="list-group">
+            <li ng-repeat="follow in model.follows track by $index"
+                class="list-group-item">
+                userId:
+                {{follow}}
             </li>
         </ul>
 
