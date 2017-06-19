@@ -1,8 +1,11 @@
 var app = require('./express');
+<<<<<<< HEAD
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session      = require('express-session');
 var passport = require('passport');
+=======
+>>>>>>> origin/master
 
 
 app.use(cookieParser());
@@ -31,7 +34,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(app.express.static(__dirname + '/public'));
 
+<<<<<<< HEAD
 require ("./test/app.js");
+=======
+
+
+require ("./test/app.js");
+
+>>>>>>> origin/master
 require ("./assignment/app/app");
 var port = process.env.PORT || 3000;
 
