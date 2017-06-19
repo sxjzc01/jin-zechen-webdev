@@ -5,9 +5,6 @@
     <script src="../vendor/angular/angular.min.js"></script>
     <script src="imdbapi/app.js"></script>
     <meta charset="UTF-8">
-
-
-
     <title>Title</title>
 </head>
 
@@ -47,6 +44,8 @@
             <img ng-src="{{model.movie.Poster}}" width="200px"/>
             <h3>{{model.movie.Director}}</h3>
             <p>{{model.movie.Plot}}</p>
+            <!--<ng-show-->
+            <h3>{{model.movie.imdbID}}</h3>
 
             <ul>
 

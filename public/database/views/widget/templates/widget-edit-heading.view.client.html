@@ -1,0 +1,61 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="back-image pull-left" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"></a>
+            <a class="navbar-brand" href="#!/user/{{model.userId}}">Edit your Header</a>
+            <p class="navbar-text pull-right">
+                <a href="#!/login" class="navbar-link">Logout</a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+
+        <div class="row">
+
+            <div>
+                Edit your Heading:
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+                   ng-click="model.update('heading', model.widget.text, model.widget.size)"
+                   class="glyphicon glyphicon-ok"></a>
+            </div>
+
+
+            <div class="col-xs-12 col-sm-9">
+                <div class="form-group">
+                    <label for="widget-heading-name">Name</label>
+                    <input type="text" class="form-control" id="widget-heading-name" value="My header"></input>
+                </div>
+                <div class="form-group">
+                    <label for="widget-heading-text">Text</label>
+                    <input type="text" ng-model="model.widget.text" class="form-control" id="widget-heading-text" value="LODLEODL"></input>
+                </div>
+                <div class="form-group">
+                    <label for="widget-heading-size">Size</label>
+                    <select id="widget-heading-size" ng-model="model.widget.size" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+
+                </div>
+                <a class="btn btn-primary btn-block btn-login"
+                   href="#!/user/{{model.id}}/website/{{model.wid}}/page/{{model.pid}}/widget"
+                   ng-click="model.delete()">Delete</a>
+            </div>
+        </div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="pull-right">
+            <a href="#!/user/{{user.userId}}/profile">
+                <div class="navbar-profile-icon"></div>
+            </a>
+        </div>
+    </div>
+</nav>

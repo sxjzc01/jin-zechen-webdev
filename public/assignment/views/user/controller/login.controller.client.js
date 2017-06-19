@@ -14,21 +14,21 @@
             }
             // var found = userService.findUserByCredentials(username, password);
             userService
-                .findUserByCredentials(username, password)
-                .then(function (found) {
-                        $location.url('/user/' + found._id);
-                    // if(found !== null) {
-                    //     console.log(found)
-                    //
-                    //     $location.url('/user/' + found._id);
-                    // } else {
-                    //     vm.message = "sorry, " + username + " not found. please try again!";
-                    //     console.log(4);
-                    // }
-                },
-                function (found) {
-                        vm.message = "sorry, " + username + " not found. please try again!";
-                });
+                .login(username, password)
+                .then(login, handleError);
+
+            function handleError(error) {
+                vm.message = "Username " + username + " not found, please try again";
+            }
+            function login(found) {
+                if(found !== null) {
+                    $location.url('/profile');
+                    // $scope.message = "Welcome " + username;
+                } else {
+                    vm.message = "Username " + username + " not found, please try again";
+                }
+
+            }
         }
     }
 })();

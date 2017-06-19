@@ -1,0 +1,65 @@
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#!/user/{{model.userId}}" class="navbar-link pull-left">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </p>
+
+            <a class="navbar-brand navbar-default">
+                Friends
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+    <ul class="list-group">
+
+        <div ng-show="model.error" class="alert alert-danger">
+            {{model.error}}
+        </div>
+
+        <div ng-show="model.message" class="alert alert-success">
+            {{model.message}}
+        </div>
+
+        <ul class="list-group">
+            <li ng-repeat="friend in model.friends track by $index"
+                class="list-group-item">
+                {{friend}}
+            </li>
+        </ul>
+
+        <label for="friends">friends</label>
+        <input id="friends"
+                  ng-model="model.friend"
+                  rows="5"
+                  class="form-control">
+        </input>
+
+        <a class="btn btn-block btn-success"
+           ng-click="model.addFriend(model.friend)"
+           >Add friend</a>
+    </ul>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container pull-right">
+        <div class="row navbar-text pull-right">
+            <div class="col-xs-3 text-center">
+                <a href="#!/user/{{model.userId}}" class="navbar-link">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+</body>

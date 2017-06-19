@@ -31,7 +31,7 @@
         }
 
         function createPage(page) {
-            if (typeof page === 'undefined') {
+            if (typeof page === 'undefined' || page.name === '') {
                 model.error = "Can not create this website";
             }
             pageService.createPage(model.websiteId, page)

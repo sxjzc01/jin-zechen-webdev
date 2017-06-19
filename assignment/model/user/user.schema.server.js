@@ -4,9 +4,20 @@ var userSchema = mongoose.Schema({
     password: {type: String, require: true},
     firstName: String,
     lastName: String,
+    roles: [{type: String, default: 'USER', enum: ['USER', 'STUDENT','ADMIN', 'FACULTY']}],
+
+    followList: [{type: mongoose.Schema.Types.ObjectId, ref: "UserModel"}],
+    // followedBy: [{type: String}],
+    // movies: [{type: mongoose.Schema.Types.ObjectId, ref: "WebsiteModel"}],
+
     email: String,
     phone: String,
     websites: {type: mongoose.Schema.Types.ObjectId, ref: "WebsiteModel"},
-    dateCreated: {type: Date, default: Date.now}
+    dateCreated: {type: Date, default: Date.now},
+
+    facebook: {
+        id:    String,
+        token: String
+    }
 }, {collection: "user"});
 module.exports = userSchema;

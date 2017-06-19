@@ -44,13 +44,13 @@
 
         <a class="btn btn-primary btn-block"
            href="#!/user/{{model.userId}}/website">Websites</a>
-        <a class="btn btn-danger  btn-block"
+        <a ng-click="model.logout()" class="btn btn-danger  btn-block"
            href="#!/login">Logout</a>
         <a ng-click="model.updateUser(model.user)"
            class="btn btn-success btn-block">Update</a>
         <a class="btn btn-block btn-info"
-           ng-click="model.deleteUser(model.user)"
-           href="#!/login">Delete User</a>
+           ng-click="model.unregister()"
+           >Unregister</a>
     </div>
 
     <nav class="navbar navbar-default navbar-fixed-bottom">

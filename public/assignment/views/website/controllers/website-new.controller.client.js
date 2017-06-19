@@ -24,7 +24,7 @@
         }
 
         function createWebsite(website) {
-            if (typeof website === 'undefined') {
+            if (typeof website === 'undefined' || website.name === '') {
                 model.error = "Can not create this website";
             }
 

@@ -67,6 +67,10 @@
         </div>
         <div class="row col-xs-12 col-sm-8">
 
+            <div ng-show="model.error" class="alert alert-danger">
+                {{model.error}}
+            </div>
+
             <label for="name">Name</label>
             <input class="form-control"
                    ng-model="website.name"
@@ -81,7 +85,7 @@
 
             <a class="btn btn-block btn-success"
                ng-click="model.createWebsite(website)"
-               href="#!/user/{{model.userId}}/website">Create</a>
+               >Create</a>
         </div>
     </div>
 

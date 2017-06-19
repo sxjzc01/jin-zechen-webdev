@@ -8,6 +8,11 @@ module.exports = function (app, mongoose) {
     require('./page/page.schema.server.js')(mongoose);
     require('./page/page.model.server.js')(mongoose);
     require('./widget/widget.schema.server.js')(mongoose);
-    require('./widget/widget.model.server.js')(mongoose)
+    require('./widget/widget.model.server.js')(mongoose);
+    require('./databaseUser/databaseUser.model.server.js')(mongoose);
+    require('./databaseUser/databaseUser.schema.server')(mongoose);
+    require('./movie/movie.model.server.js')(mongoose);
+    require('./movie/movie.schema.server')(mongoose);
+
 
 };

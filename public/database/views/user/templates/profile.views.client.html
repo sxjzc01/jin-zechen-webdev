@@ -1,0 +1,70 @@
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    Profile
+                </a>
+                <p class="navbar-text pull-right">
+
+                </p>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <h1>Profile</h1>
+
+        <form>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text"
+                       ng-model="model.user.username"
+                       class="form-control" id="username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input ng-model="model.user.email"
+                        type="email"
+                       class="form-control" id="email">
+            </div>
+            <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input
+                        type="text" ng-model="model.user.firstName"
+                       class="form-control" id="first-name">
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" ng-model="model.user.lastName"
+                       class="form-control" id="last-name">
+            </div>
+        </form>
+
+        <a class="btn btn-primary btn-block"
+           href="#!/user/{{model.userId}}/friends">Friends</a>
+        <a ng-click="model.logout()" class="btn btn-danger  btn-block"
+           href="#!/login">Logout</a>
+        <a ng-click="model.updateUser(model.user)"
+           class="btn btn-success btn-block">Update</a>
+        <a class="btn btn-block btn-info"
+           ng-click="model.unregister()"
+           >Unregister</a>
+        <a class="btn btn-block btn-info"
+           href="#!/{{model.userId}}/search"
+        >Search movies</a>
+    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <div class="row navbar-text pull-right">
+                <div class="col-xs-3 text-center">
+                    <a href="#" class="navbar-link">
+                        <span class="glyphicon glyphicon-user pull-right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
