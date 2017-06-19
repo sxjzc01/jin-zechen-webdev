@@ -1,11 +1,10 @@
 var app = require('./express');
-<<<<<<< HEAD
+
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session      = require('express-session');
 var passport = require('passport');
-=======
->>>>>>> origin/master
+
 
 
 app.use(cookieParser());
