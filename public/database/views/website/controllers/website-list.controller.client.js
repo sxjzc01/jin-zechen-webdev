@@ -3,10 +3,18 @@
         .module('WebAppMaker')
         .controller('websiteListController', websiteListController);
 
-    function websiteListController($routeParams, webService) {
+    function websiteListController(currentUser, $routeParams, webService, userService) {
         var model = this;
 
         model.userId = $routeParams['userId'];
+        model.currentUser = currentUser._id;
+
+        userService.findUserById(model.userId)
+            .then(function (response) {
+                model.user = response.username;
+            });
+
+        model.boolean = model.userId === model.currentUser;
 
         function init() {
             model.websites = webService.findAllWebsitesForUser(model.userId);

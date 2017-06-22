@@ -12,7 +12,7 @@ userModel.findAllUsers = findAllUsers;
 userModel.deleteUser = deleteUser;
 userModel.updateUser = updateUser;
 userModel.addFriend = addFriend;
-// userModel.findUserByName = findUserByName;
+userModel.findUserByName = findUserByName;
 
 userModel.findUserByFacebookId = findUserByFacebookId;
 
@@ -83,9 +83,9 @@ function findUserByCredentials(username, password) {
     return userModel.findOne({username: username, password: password});
 }
 
-// function findUserByName(username) {
-//     return userModel.findOne({username: username});
-// }
+function findUserByName(username) {
+    return userModel.findOne({username: username});
+}
 
 function findUserById(userId) {
     return userModel.findById(userId);

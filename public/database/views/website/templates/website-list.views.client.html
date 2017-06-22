@@ -5,13 +5,13 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="#!/user/{{model.userId}}" class="navbar-link pull-left">
+                <a href="#!/profile" class="navbar-link pull-left">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </p>
 
             <a class="navbar-brand navbar-default">
-                Website-list
+                {{model.user}}'s Interests
             </a>
 
         </div>
@@ -20,7 +20,6 @@
 
 <div class="container-fluid">
     <ul class="list-group">
-
         <li class="list-group-item active">
             <div class="row">
                 <div class="col-lg-5 col-md-8 col-xs-10">
@@ -33,13 +32,15 @@
                     Accessed
                 </div>
                 <div class="col-xs-1">
-                    <a href="#!/user/{{model.userId}}/website/new">
+                    <a href="#!/user/{{model.userId}}/website/new"
+                       ng-if="model.boolean">
                         <span class="glyphicon glyphicon-plus pull-right" style="color: white;"></span>
+
                     </a>
                 </div>
             </div>
         </li>
-
+        <li ng-if="model.currentUser.roles.indexOf('ADMIN') > -1">
 
         <li ng-repeat="website in model.websites" class="list-group-item">
             <div class="row">
@@ -55,7 +56,8 @@
                 </div>
                 <div class="col-xs-1">
 
-                    <a href="#!/user/{{model.userId}}/website/{{website._id}}">
+                    <a href="#!/user/{{model.userId}}/website/{{website._id}}"
+                       ng-if="model.boolean">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </div>
@@ -69,7 +71,7 @@
     <div class="container pull-right">
         <div class="row navbar-text pull-right">
             <div class="col-xs-3 text-center">
-                <a href="#!/user/{{model.userId}}" class="navbar-link">
+                <a href="#!/profile" class="navbar-link">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

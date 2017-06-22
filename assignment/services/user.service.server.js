@@ -62,7 +62,8 @@ passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
 
 // app.get   ('/api/assignment/user', findUserByCredentials);
-app.get   ('/api/assignment/user', isAdmin, findAllUsers);
+// app.get   ('/api/assignment/user', isAdmin, findAllUsers);
+app.get   ('/api/assignment/user', findAllUsers);
 app.get   ('/api/assignment/user/:userId', findUserById);
 app.post  ('/api/assignment/user', createUser);
 app.put   ('/api/assignment/user/:userId', updateUser);
@@ -233,18 +234,49 @@ function createUser(req, res) {
 
 
 function findAllUsers(req, res) {
-    var username = req.query['username'];
-    var password = req.query['password'];
-    if(username && password) {
-        return findUserByCredentials(req, res);
-    }
+        var username = req.query['username'];
+        var password = req.query.password;
 
+        if(username && password) {
+            userModel
+                .findUserByCredentials(username, password)
+                .then(function (user) {
+                    if(user) {
+                        res.json(user);
+                    } else {
+                        res.sendStatus(404);
+                    }
+                });
+        } else if(username) {
+            userModel
+                .findUserByName(username)
+                .then(function (user) {
+                    if(user) {
+                        res.json(user);
+                    } else {
+                        res.sendStatus(404);
+                    }
+                });
+        } else {
+            userModel
+                .findAllUsers()
+                .then(function (users) {
+                    res.json(users);
+                });
+        }
 
-    userModel
-        .findAllUsers()
-        .then(function (users) {
-            res.json(users);
-        });
+    // var username = req.query['username'];
+    // var password = req.query['password'];
+    // if(username && password) {
+    //     return findUserByCredentials(req, res);
+    // }
+    //
+    //
+    // userModel
+    //     .findAllUsers()
+    //     .then(function (users) {
+    //         res.json(users);
+    //     });
 }
 
 function isAdmin(req, res, next) {

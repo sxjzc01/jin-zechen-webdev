@@ -9,11 +9,12 @@
                 </a>
             </p>
             <a class="navbar-brand">
-                widget List
+                {{model.user}}'s posting
             </a>
             <div class="wd-right">
                 <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
-                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="glyphicon glyphicon-plus"
+                          ng-if="model.boolean"></span>
                 </a>
             </div>
         </div>
@@ -24,7 +25,9 @@
             <div ng-repeat="widget in model.widgets" class="wd-widget">
                 <div ng-include="model.getUrl(widget)"></div>
                 <div class="wd-toolbar">
-                    <a ng-click="model.editpage(widget)" class="glyphicon glyphicon-cog"></a>
+                    <a ng-click="model.editpage(widget)"
+                       ng-if="model.boolean"
+                       class="glyphicon glyphicon-cog"></a>
 
                 </div>
 

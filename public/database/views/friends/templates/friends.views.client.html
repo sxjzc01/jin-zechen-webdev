@@ -38,8 +38,12 @@
         <ul class="list-group">
             <li ng-repeat="friend in model.friends track by $index"
                 class="list-group-item">
-                userId:
-                {{friend}}
+                <script></script>
+
+
+                <a class="btn btn-primary btn-block"
+                   href="#!/user/{{friend}}/website">userId: {{friend}}</a>
+
             </li>
         </ul>
 
@@ -56,7 +60,7 @@
             </li>
         </ul>
 
-        <label for="friends">friends</label>
+        <label for="friends">Follow this person (using userId)</label>
         <input id="friends"
                   ng-model="model.friend"
                   rows="5"
@@ -65,15 +69,43 @@
 
         <a class="btn btn-block btn-success"
            ng-click="model.addFriend(model.friend)"
-           >Add friend</a>
+           href="#!/user/{{model.userId}}/friends"
+           >Follow</a>
+
+        &nbsp
+
+
+        <div>
+
+            <a class="list-group-item active">
+               User List
+            </a>
+        <li ng-repeat="user in model.users" class="list-group-item">
+            <!--<span ng-click="model.deleteUser(user)"-->
+            <!--class="glyphicon glyphicon-remove pull-right">-->
+            <!--</span>-->
+
+            <div>
+            Username:
+            {{user.username}}
+            </div>
+            <div>
+                UserId:
+            {{user._id}}
+            </div>
+        </li>
+
+        </div>
     </ul>
 </div>
+
+
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container pull-right">
         <div class="row navbar-text pull-right">
             <div class="col-xs-3 text-center">
-                <a href="#!/user/{{model.userId}}" class="navbar-link">
+                <a href="#!/profile" class="navbar-link">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

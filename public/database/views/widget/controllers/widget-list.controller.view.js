@@ -3,13 +3,22 @@
         .module('WebAppMaker')
         .controller('widgetListController', widgetListController);
 
-    function widgetListController ($location, widgetService, $routeParams, $sce, $scope) {
+    function widgetListController (currentUser, $location, widgetService, $routeParams, $sce, $scope, userService) {
         var model = this;
 
         model.userId = $routeParams['userId'];
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
         model.widgetId = $routeParams['widgetId'];
+
+        model.currentUser = currentUser._id;
+
+        model.boolean = model.userId === model.currentUser;
+
+        userService.findUserById(model.userId)
+            .then(function (response) {
+                model.user = response.username;
+            });
 
         function init () {
             widgetService

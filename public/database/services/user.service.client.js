@@ -107,6 +107,7 @@
             var url = "/api/assignment/user?username="+username;
             return $http.get(url)
                 .then(function (response) {
+
                     return response.data;
                 });
             // var user = users.find(function (user) {

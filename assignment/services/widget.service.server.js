@@ -49,7 +49,8 @@ function uploadImage(req, res) {
         .findWidgetById(widgetId)
         .then (function (widget) {
             widget.url = '/assignment/upload/' + filename;
-            var callbackUrl = "/assignment/#!/profile/website/" + websiteId + "/page/" + pageId + "/widget/";
+            // var callbackUrl = "/assignment/#!/profile/website/" + websiteId + "/page/" + pageId + "/widget/";
+            var callbackUrl = "/database/#!/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/";
             res.redirect(callbackUrl);
             return widgetModel
                 .updateWidget(widgetId, widget)

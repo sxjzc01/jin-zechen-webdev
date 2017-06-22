@@ -4,7 +4,7 @@ var userSchema = mongoose.Schema({
     password: {type: String, require: true},
     firstName: String,
     lastName: String,
-    roles: [{type: String, default: 'USER', enum: ['USER', 'STUDENT','ADMIN', 'FACULTY']}],
+    roles: [{type: String, default: 'USER', enum: ['USER','ADMIN']}],
 
     followList: [{type: mongoose.Schema.Types.ObjectId, ref: "UserModel"}],
     followedBy: [{type: mongoose.Schema.Types.ObjectId, ref: "UserModel"}],

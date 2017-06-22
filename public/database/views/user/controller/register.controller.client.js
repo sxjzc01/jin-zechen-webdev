@@ -22,22 +22,23 @@
             userService
                 .findUserByUsername(username)
                 .then(
-                    function () {
+
+                    function (response) {
                         model.error = "sorry, that username is taken";
-                        console.log(asd);
                     },
                     function () {
                         var newUser = {
                             username: username,
                             password: password
                         };
-                        return userService
-                            .register(newUser);
+                        userService
+                            .register(newUser)
+                            .then(function (user) {
+                            $location.url('/profile');
+                        });
                     }
                 )
-                .then(function (user) {
-                    $location.url('/profile');
-                });
+
 
         })
     }

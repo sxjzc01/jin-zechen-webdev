@@ -6,8 +6,30 @@
     function friendsController($routeParams, userService, $location) {
         var model = this;
         model.addFriend = addFriend;
+        model.findName = findName;
 
         model.userId = $routeParams['userId'];
+
+        function init() {
+            findAllUsers();
+        }
+        init();
+
+        function findAllUsers() {
+            userService
+                .findAllUsers()
+                .then(function (users) {
+                    model.users = users;
+                })
+        }
+
+        function findName(Id) {
+            userService
+                .findUserById(Id)
+                .then(function (response) {
+                    model.name = response.username;
+                })
+        }
 
         userService
             .findUserById(model.userId)
@@ -36,7 +58,6 @@
                         userService
                             .addFriend(model.userId, friendId)
                             .then(function () {
-
                                 model.message = "Success. Please refresh this page.";
                             }, function (err) {
                                 console.log(err);

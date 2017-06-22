@@ -3,11 +3,12 @@
         .module('WebAppMaker')
         .controller('commentController', commentController);
 
-    function commentController($routeParams, commentService, $location) {
+    function commentController(currentUser, $routeParams, commentService, $location) {
         var model = this;
 
         console.log($routeParams['movieId']);
         model.movieId = $routeParams['movieId'];
+        model.currentUser = currentUser;
 
         commentService.findMovieById(model.movieId)
             .then(function(response) {

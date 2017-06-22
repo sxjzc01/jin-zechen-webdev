@@ -11,7 +11,7 @@
             </p>
 
             <a class="navbar-brand navbar-default">
-                Page-list
+                {{model.user}}'s Posting
             </a>
 
         </div>
@@ -33,7 +33,8 @@
                     Accessed
                 </div>
                 <div class="col-xs-1">
-                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/new">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/new"
+                       ng-if="model.boolean">
                         <span class="glyphicon glyphicon-plus pull-right" style="color: white;"></span>
                     </a>
                 </div>
@@ -58,7 +59,8 @@
                 <div class="col-xs-1">
 
                     <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                        <span class="glyphicon glyphicon-cog pull-right"
+                              ng-if="model.boolean"></span>
                     </a>
                 </div>
             </div>
