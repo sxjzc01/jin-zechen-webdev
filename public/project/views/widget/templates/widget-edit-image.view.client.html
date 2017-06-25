@@ -1,0 +1,82 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="back-image pull-left" href="#!/user/{{model.userId}}
+            /website/{{model.websiteId}}/page/{{model.pageId}}/widget"></a>
+
+            <a class="navbar-brand" href="#!/user/{{model.userId}}">Edit your Image</a>
+            <p class="navbar-text pull-right">
+                <a href="#!/login" class="navbar-link">Logout</a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+
+
+<div class="container-fluid">
+
+    <label for="name">Name</label>
+    <input ng-model="model.widget.name"
+           class="form-control"
+           placeholder="Image Name"
+           id="name"/>
+
+    <label for="text">Text</label>
+    <input ng-model="model.widget.text"
+           class="form-control"
+           placeholder="Image Description"
+           id="text"/>
+
+    <label for="url">URL</label>
+    <input ng-model="model.widget.url"
+           class="form-control"
+           placeholder="https://"
+           id="url"/>
+
+    <label for="width">Width</label>
+    <input ng-model="model.widget.width"
+           class="form-control"
+           placeholder="100%"
+           value="100%"
+           id="width"/>
+
+
+    <label for="file">Upload</label>
+    <form id="file" action="/api/upload"  method="post" enctype="multipart/form-data">
+        <input  name="myFile"    type="file" class="form-control"/>
+        <input  name="width"     value="{{model.widget.width}}" style="display: none"/>
+        <input  name="userId"    value="{{model.userId}}"   style="display: none"/>
+        <input  name="websiteId" value="{{model.websiteId}}"   style="display: none"/>
+        <input  name="pageId"    value="{{model.pageId}}"   style="display: none"/>
+        <input  name="widgetId"  value="{{model.widgetId}}"   style="display: none"/>
+
+        <button type="submit"  class="btn btn-block btn-primary" >Upload Image</button>
+    </form>
+
+
+    <a ng-click="model.delete()"
+       class="btn btn-block btn-danger">
+        Delete
+    </a>
+
+    <a class="btn btn-primary btn-block btn-login"
+       href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/flickr">Flickr</a>
+
+    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+       class="btn btn-block btn-success">
+        Cancel
+    </a>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="pull-right">
+            <a href="#!/user/{{user.userId}}/profile">
+                <div class="navbar-profile-icon"></div>
+            </a>
+        </div>
+    </div>
+</nav>

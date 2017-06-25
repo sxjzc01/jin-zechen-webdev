@@ -1,0 +1,61 @@
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#!/{{model.userId}}/search" class="navbar-link pull-left">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </p>
+
+            <a class="navbar-brand navbar-default">
+               Comment
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+    <ul class="list-group">
+
+        <ul class="list-group">
+            <li ng-repeat="comment in model.comments track by $index"
+                class="list-group-item">
+
+                <img ng-src="{{movie.Poster}}" width="50px"/>
+
+                {{comment}}
+            </li>
+        </ul>
+
+        <!--<li ng-if="model.currentUser.roles.indexOf('ADMIN') > -1">-->
+        <label for="comment">Comment</label>
+        <textarea id="comment"
+                  ng-model="model.comment"
+                  rows="5"
+                  class="form-control"> </textarea>
+
+        <a class="btn btn-block btn-success"
+           ng-click="model.createComment(model.comment)"
+           href="#!">Add comment</a>
+        <!--</li>-->
+    </ul>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container pull-right">
+        <div class="row navbar-text pull-right">
+            <div class="col-xs-3 text-center">
+                <a href="#!/user/{{model.userId}}" class="navbar-link">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+</body>

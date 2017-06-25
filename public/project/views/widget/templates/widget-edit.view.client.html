@@ -1,0 +1,53 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="back-image pull-left" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"></a>
+            <a class="navbar-brand" href="#!/user/{{model.userId}}">Edit your {{model.widget.widgetType}}</a>
+            <p class="navbar-text pull-right">
+                <a href="#!/login" class="navbar-link">Logout</a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+
+<div>
+    <div>
+        <div class="row">
+
+
+            <div class="col-sm-3 hidden-xs">
+                <div class="left-nav-bar">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="list-group-item active first-block">
+                        Widget-list<span class="plus-image"></span>
+                    </a>
+                    <div class="list-group">
+                        <a ng-click="model.createNew('header')" class="list-group-item">Header</a>
+                        <a ng-click="model.createNew('image')"  class="list-group-item">Image</a>
+                        <a ng-click="model.createNew('youtube')" class="list-group-item">Youtube</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-9">
+                <div ng-switch="model.widget.widgetType">
+                    <div ng-switch-when="HEADING">
+                        <div ng-include src="'views/widget/templates/widget-edit-heading.view.client.html'"></div>
+                    </div>
+                    <div ng-switch-when="IMAGE">
+                        <div ng-include src="'views/widget/templates/widget-edit-image.view.client.html'"></div>
+                    </div>
+                    <div ng-switch-when="YOUTUBE">
+                        <div ng-include src="'views/widget/templates/widget-edit-youtube.view.client.html'"></div>
+                    </div>
+                    <div ng-switch-when="HTML">
+                        <div ng-include src="'views/widget/templates/widget-edit-html.view.client.html'"></div>
+                    </div>
+                    <div ng-switch-when="INPUT">
+                        <div ng-include src="'views/widget/templates/widget-edit-input.view.client.html'"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

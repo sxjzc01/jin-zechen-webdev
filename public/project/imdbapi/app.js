@@ -1,13 +1,33 @@
 (function (){
     angular
-        .module('pocApp', [])
-        .controller('pocController', pocController)
+        .module('WebAppMaker')
+        .controller('pocController', pocController);
     
-    function pocController($http, $sce) {
+    function pocController($http, $sce, $routeParams, userService) {
         var model = this;
         model.searchMovie = searchMovie;
         model.searchDetails = searchDetails;
+        model.userId = $routeParams['userId'];
+        model.addMovie = addMovie;
 
+
+
+        function addMovie(imbdID) {
+            userService
+                .findUserById(model.userId)
+                .then(function (user) {
+                    if (user.movies.indexOf(imbdID) > -1) {
+                        console.log(user.movies)
+                        model.error = "Movie has already in your favorite list";
+                    } else {
+                        userService
+                            .addMovie(model.userId, imbdID)
+                            .then(function (response) {
+                                model.m = response.data;
+                            })
+                    }
+                });
+        }
 
         function searchDetails(imdbID) {
             var url = "https://www.omdbapi.com/?apikey=e75522b8&i=" + imdbID;

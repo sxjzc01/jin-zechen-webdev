@@ -1,0 +1,55 @@
+<!-- Fixed navbar -->
+<div class="theme-background">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Movie fans</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#!/">Home</a></li>
+                <li ng-if="!model.currentUser._id"><a href="#!/login">Login</a></li>
+                <li ng-if="!model.currentUser._id"><a href="#!/register">Register</a></li>
+                <li ng-if="!model.currentUser._id"><a href="#!/index3">Anonymous</a></li>
+                <li ng-if="model.currentUser._id"><a href="#!/profile">Profile</a></li>
+                <li ng-if="model.currentUser.roles.indexOf('ADMIN') > -1"><a href="#!/admin">Admin</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container theme-showcase" role="main">
+
+        <label><h1>Welcome to this website</h1></label>
+
+        <div class="jumbotron">
+            <h1>In this website, you can:</h1>
+            <ul>
+                <h2>1. Search movies' information</h2>
+            </ul>
+            <ul>
+                <h2>2. Comment movies</h2>
+            </ul>
+            <ul>
+                <h2>3. Make friends with those users who share the same interests as you</h2>
+            </ul>
+            <ul>
+                <h2>4. Create your own website and posting</h2>
+            </ul>
+            <ul>
+                <h2>5. See your friends' posting and the movies in your friends' favorite list</h2>
+            </ul>
+
+            <p>Note: The anonymous user can only search movies' information. To use more functionality listed above, you need to log in.</p>
+        </div>
+
+
+</div>
+
+</div>

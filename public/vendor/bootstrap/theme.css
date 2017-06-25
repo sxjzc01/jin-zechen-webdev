@@ -1,6 +1,17 @@
 body {
   padding-top: 70px;
-  padding-bottom: 30px;
+  padding-bottom: 50px;
+  background-color: lightblue;
+
+
+}
+
+.body-red{
+  padding-top: 70px;
+  padding-bottom: 50px;
+  background-color: yellow;
+
+
 }
 
 .theme-dropdown .dropdown-menu {
@@ -15,4 +26,64 @@ body {
 
 .theme-showcase .navbar .container {
   width: auto;
+}
+
+.theme-background {
+  background-image: url('http://baltimoresportsandlife.com/wp-content/uploads/2016/07/Movies.jpg');
+  position: absolute;
+  top: 50px;
+  bottom: -300px;
+  right: 0px;
+  left: 0px;
+
+}
+
+.theme-background2 {
+  background-image: url('http://cdn.firespring.com/images/90349557-f83b-4af1-a134-ef1b43293823.png');
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+
+}
+
+.theme-background3 {
+  background-image: url('http://cdn.wallpapersafari.com/84/5/3gKthi.jpg');
+  position: absolute;
+  top: 0px;
+  bottom: -700px;
+  right: 0px;
+  left: 0px;
+
+}
+
+.theme-background4 {
+  background-image: url('https://blogs.manageengine.com/wp-content/uploads/2015/07/friends.jpg');
+  position: absolute;
+  top: 0px;
+  bottom: -700px;
+  right: 0px;
+  left: 0px;
+
+}
+
+.theme-background5 {
+  background-image: url('http://megaicons.net/static/img/icons_sizes/51/200/512/admin-icon.png');
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+
+}
+
+.theme-background6 {
+  background-image: url('https://previews.123rf.com/images/paulrommer/paulrommer1405/paulrommer140500043/28287385-Shenzhen-skyline-in-watercolor-background-Stock-Photo.jpg');
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+
 }

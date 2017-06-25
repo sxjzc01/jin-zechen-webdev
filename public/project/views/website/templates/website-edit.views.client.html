@@ -14,9 +14,7 @@
                 Website-edit
             </a>
             <p class="navbar-text pull-right">
-                <a href="#!/user/{{model.userId}}/website" class="navbar-link">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </a>
+
             </p>
         </div>
     </div>
@@ -69,6 +67,10 @@
         </div>
         <div class="row col-xs-12 col-sm-8">
 
+            <div ng-show="model.error" class="alert alert-danger">
+                {{model.error}}
+            </div>
+
             <label for="name">Name</label>
             <input class="form-control"
                    ng-model="model.website.name"
@@ -82,7 +84,7 @@
 
             <a class="btn btn-block btn-success"
                ng-click="model.updateWebsite(model.websiteId, model.website)"
-               href="#!/user/{{model.userId}}/website">Update</a>
+               >Update</a>
             <a class="btn btn-block btn-danger"
                ng-click="model.deleteWebsite(model.websiteId)"
                href="#!/user/{{model.userId}}/website">Delete</a>

@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('demo')
+        .module('WebAppMaker')
         .controller('apiController', apiController);
 
     function apiController(apiService){

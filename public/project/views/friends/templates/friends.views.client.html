@@ -1,0 +1,115 @@
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#!/profile" class="navbar-link pull-left">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </p>
+
+            <a class="navbar-brand navbar-default">
+                Friends
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+    <ul class="list-group">
+
+        <div ng-show="model.error" class="alert alert-danger">
+            {{model.error}}
+        </div>
+
+        <div ng-show="model.message" class="alert alert-success">
+            {{model.message}}
+        </div>
+
+        <div>
+            <label>
+            Follow List
+            </label>
+        </div>
+        <ul class="list-group">
+            <li ng-repeat="friend in model.friends track by $index"
+                class="list-group-item">
+
+
+                <a class="btn btn-primary btn-block"
+                   href="#!/user/{{friend}}/website">userId: {{friend}}</a>
+
+            </li>
+        </ul>
+
+        <div>
+            <label>
+                Followed By
+            </label>
+        </div>
+        <ul class="list-group">
+            <li ng-repeat="follow in model.follows track by $index"
+                class="list-group-item">
+                userId:
+                {{follow}}
+            </li>
+        </ul>
+
+        <label for="friends">Follow this person (using userId)</label>
+        <input id="friends"
+                  ng-model="model.friend"
+                  rows="5"
+                  class="form-control">
+        </input>
+
+        <a class="btn btn-block btn-success"
+           ng-click="model.addFriend(model.friend)"
+           href="#!/user/{{model.userId}}/friends"
+           >Follow</a>
+
+        &nbsp
+
+
+        <div>
+
+            <a class="list-group-item active">
+               User List
+            </a>
+        <li ng-repeat="user in model.users" class="list-group-item">
+            <!--<span ng-click="model.deleteUser(user)"-->
+            <!--class="glyphicon glyphicon-remove pull-right">-->
+            <!--</span>-->
+
+            <div>
+            Username:
+            {{user.username}}
+            </div>
+            <div>
+                UserId:
+            {{user._id}}
+            </div>
+        </li>
+
+        </div>
+    </ul>
+</div>
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container pull-right">
+        <div class="row navbar-text pull-right">
+            <div class="col-xs-3 text-center">
+                <a href="#!/profile" class="navbar-link">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+</body>

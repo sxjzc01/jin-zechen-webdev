@@ -3,23 +3,38 @@
         .module('WebAppMaker')
         .controller('profileController', profileController);
 
-    function profileController ($location, userService, $routeParams) {
+    function profileController (currentUser, $location, userService, $routeParams) {
         var model = this;
-        model.userId = $routeParams['userId'];
-        model.user = userService.findUserById(model.userId);
-        userService
-            .findUserById(model.userId)
-            .then(renderUser, userError);
+        model.userId = currentUser._id//$routeParams['userId'];
+        // model.user = userService.findUserById(model.userId);
+        model.user = currentUser;
+
+        // userService
+        //     .findUserById(model.userId)
+        //     .then(renderUser, userError);
+
+        function init() {
+            renderUser(currentUser);
+        }
+        init();
 
         model.updateUser = updateUser;
-        model.deleteUser = deleteUser;
-        function deleteUser(user) {
+        model.unregister = unregister;
+        model.logout = logout;
+        
+        function logout() {
             userService
-                .deleteUser(user._id)
+                .logout()
+                .then(function () {
+                    $location.url('/')
+                })
+        }
+
+        function unregister() {
+            userService
+                .unregister()
                 .then(function () {
                     $location.url('/');
-                }, function () {
-                    model.error = "Unable to delete you";
                 });
         }
 

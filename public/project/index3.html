@@ -10,13 +10,13 @@
 
 
 <body>
-<div class="theme-background3">
-    <div class="container theme-showcase" role="main">
 <div class="container-fluid"
      ng-controller="pocController as model">
-
+        <div class="jumbotron">
+        <p>To see more details or add comments, please log in</p>
+        </div>
     <a class="btn btn-success btn-block"
-       href="#!/profile">Go Back</a>
+       href="#!/">Go Back</a>
 
     <div ng-show="model.error" class="alert alert-danger">
         {{model.error}}
@@ -24,7 +24,7 @@
 
     <h1>Search Movie</h1>
     <div class="row">
-        <div class="col-xs-6">
+        <div class="col-xs-12">
             <h2>Search(Type a name here)</h2>
             <input ng-model="model.title"
                    class="form-control"
@@ -47,34 +47,10 @@
                 </li>
             </ul>
         </div>
-        <div class="col-xs-6">
-            <h2>Details</h2>
-            <h3>{{model.movie.title}}</h3>
-            <img ng-src="{{model.movie.Poster}}" width="200px"/>
-            <h3>{{model.movie.Director}}</h3>
-            <p>{{model.movie.Plot}}</p>
 
-            {{model.movie.imdbID}}
-
-            <a ng-show="model.movie.imdbID" class="btn btn-primary btn-block"
-               href="#!/user/{{model.userId}}/comment/{{model.movie.imdbID}}">Comment</a>
-
-            <a ng-show="model.movie.imdbID" ng-click="model.addMovie(model.movie.imdbID)"
-               class="btn btn-primary btn-block"
-               >Like this movie</a>
-            <ul>
-            <ul>
-                <li ng-repeat="actor in model.movie.Actors.split(',')">
-                    {{actor}}
-                </li>
-            </ul>
-            </ul>
-            <hr/>
-        </div>
     </div>
 
-</div>
-</div>
+
 </div>
 
 

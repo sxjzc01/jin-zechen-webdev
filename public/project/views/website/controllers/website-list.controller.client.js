@@ -3,10 +3,22 @@
         .module('WebAppMaker')
         .controller('websiteListController', websiteListController);
 
-    function websiteListController($routeParams, webService) {
+    function websiteListController(currentUser, $routeParams, webService, userService, $location) {
         var model = this;
 
         model.userId = $routeParams['userId'];
+        model.currentUser = currentUser._id;
+
+
+        userService.findUserById(model.userId)
+            .then(function (response) {
+                model.user = response.username;
+                model.movies = response.movies;
+            });
+
+
+
+        model.boolean = model.userId === model.currentUser;
 
         function init() {
             model.websites = webService.findAllWebsitesForUser(model.userId);
@@ -21,12 +33,4 @@
         }
     }
 
-    // function websiteListController ($location, webService, $routeParams) {
-    //     var model = this;
-    //     model.id = $routeParams['uid'];
-    //     function init () {
-    //         model.websites = webService.findWebsitesByUser(model.id)
-    //     }
-    //     init()
-    // }
 })();

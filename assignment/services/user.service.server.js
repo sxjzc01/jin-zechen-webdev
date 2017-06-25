@@ -6,10 +6,58 @@ var LocalStrategy = require('passport-local').Strategy;
 passport.use(new LocalStrategy(localStrategy));
 var bcrypt = require("bcrypt-nodejs");
 var FacebookStrategy = require('passport-facebook').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
+var googleConfig = {
+    clientID     : '439898929096-rrviig1o10gc3hqmdppemprnlvhcv4hd.apps.googleusercontent.com',
+    clientSecret : 'M74LlybR0aZTYNqdwkEX1Fw_',
+    callbackURL  : '/auth/google/callback'
+    // callbackURL  : 'http://localhost:3000/auth/google/callback'
+};
+
+passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
+function googleStrategy(token, refreshToken, profile, done) {
+    userModel
+        .findUserByGoogleId(profile.id)
+        .then(
+            function(user) {
+                if(user) {
+                    return done(null, user);
+                } else {
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split("@");
+                    var newGoogleUser = {
+                        username:  emailParts[0],
+                        firstName: profile.name.givenName,
+                        lastName:  profile.name.familyName,
+                        email:     email,
+                        google: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    };
+                    return userModel.createUser(newGoogleUser);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        )
+        .then(
+            function(user){
+                return done(null, user);
+            },
+            function(err){
+                if (err) { return done(err); }
+            }
+        );
+}
 
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
+
+app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 
 
 var facebookConfig = {
@@ -65,11 +113,14 @@ passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 // app.get   ('/api/assignment/user', isAdmin, findAllUsers);
 app.get   ('/api/assignment/user', findAllUsers);
 app.get   ('/api/assignment/user/:userId', findUserById);
-app.post  ('/api/assignment/user', createUser);
+app.post  ('/api/assignment/user', isAdmin, createUser);
 app.put   ('/api/assignment/user/:userId', updateUser);
 app.delete('/api/assignment/user/:userId', isAdmin, deleteUser);
 app.post('/api/assignment/unregister', unregister);
 app.put('/api/assignment/user/:userId/friends', addFriend);
+app.put('/api/assignment/user/:userId/movies', addMovie);
+
+// var url = "/api/assignment/user/" + userId + "/movies";
 // app.get("/api/assignment/user?username=username", findUserByUsername);
 
 app.post  ('/api/assignment/login', passport.authenticate('local'), login);
@@ -80,9 +131,17 @@ app.post    ('/api/assignment/register', register);
 
 app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
+
+app.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/project/index.html#!/profile',
+        failureRedirect: '/project/index.html#!/login'
+    }));
+
+
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-        successRedirect: '/assignment/index.html#!/profile',
+        successRedirect: '/project/index.html#!/profile',
         failureRedirect: '/#!/login'
     }));
 
@@ -128,9 +187,19 @@ function addFriend(req, res) {
 
 }
 
+function addMovie(req, res) {
+    var userId = req.body.userId;
+    var imbdID = req.body.imbdID;
+
+    userModel
+        .addMovie(userId, imbdID)
+
+}
+
+
+
 function register(req, res) {
     var user = req.body;
-    // user.password = bcrypt.hashSync(user.password);
     userModel
         .createUser(user)
         .then(function (user) {

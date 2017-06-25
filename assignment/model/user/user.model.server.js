@@ -13,8 +13,10 @@ userModel.deleteUser = deleteUser;
 userModel.updateUser = updateUser;
 userModel.addFriend = addFriend;
 userModel.findUserByName = findUserByName;
+userModel.addMovie = addMovie;
 
 userModel.findUserByFacebookId = findUserByFacebookId;
+userModel.findUserByGoogleId = findUserByGoogleId;
 
 module.exports = userModel;
 
@@ -23,18 +25,26 @@ function findAllUsers() {
 }
 
 
+function findUserByGoogleId(googleId) {
+    return userModel.findOne({'google.id': googleId});
+}
+
 function findUserByFacebookId(facebookId) {
     return userModel.findOne({'facebook.id': facebookId});
 }
 
 function updateUser(userId, newUser) {
     delete newUser.username;
+    if (typeof newUser.roles === 'string') {
+        newUser.roles = newUser.roles.split(',');
+    }
     return userModel.update({_id: userId}, {
         $set : {
             firstName: newUser.firstName,
             lastName: newUser.lastName,
             email: newUser.email,
-            phone: newUser.phone
+            phone: newUser.phone,
+            roles: newUser.roles
         }
     });
 }
@@ -79,6 +89,25 @@ function addFriend(userId, friendId, $location) {
         })
 }
 
+function addMovie(userId, imbdID) {
+    userModel
+        .findUserById(userId)
+        .then(function (response) {
+            if (!response.movies) {
+                return userModel.update({_id: userId}, {$set:
+                    {movies: [imbdID]}})
+            } else {
+                response.movies.push(imbdID);
+
+                return userModel.update({_id: userId}, {$set: {movies: response.movies}})
+                    .then(function () {
+                        return userModel.findUserById(userId);
+                    })
+            }
+        })
+}
+
+
 function findUserByCredentials(username, password) {
     return userModel.findOne({username: username, password: password});
 }
@@ -92,6 +121,10 @@ function findUserById(userId) {
 }
 
 function createUser(user) {
-    user.roles = ['USER'];
+    if(user.roles) {
+        user.roles = user.roles.split(',');
+    } else{
+        user.roles = ['USER'];
+    }
     return userModel.create(user);
 }

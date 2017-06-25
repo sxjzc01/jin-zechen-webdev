@@ -14,8 +14,14 @@ var userSchema = mongoose.Schema({
     phone: String,
     websites: {type: mongoose.Schema.Types.ObjectId, ref: "WebsiteModel"},
     dateCreated: {type: Date, default: Date.now},
+    movies: [{type: String}],
 
     facebook: {
+        id:    String,
+        token: String
+    },
+
+    google: {
         id:    String,
         token: String
     }

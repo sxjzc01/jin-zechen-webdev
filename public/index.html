@@ -1,33 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+<div class="theme-background6">
 <head>
     <meta charset="UTF-8">
     <title>Web Dev Course Home Page</title>
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="vendor/angular/angular-route.min.js"></script>
+    <link href="vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="vendor/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="vendor/bootstrap/theme.css" rel="stylesheet">
 </head>
 <body>
     <h1>Web Dev Course Home Page</h1>
+    <div class="row">
+        <div class="col-xs-9">
+            <div class="left-nav-bar">
+                <div class="list-group">
+                    <a class="list-group-item active first-block">
+                        My Links<span class="plus-image"></span>
+                    </a>
+                    <a href="assignment/index.html" class="list-group-item">Assignment</a>
+                    <a href="project/index.html"  class="list-group-item">Project</a>
+                    <a href="https://github.com/sxjzc01/jin-zechen-webdev" class="list-group-item">Github</a>
 
-    <p>
-        Customize this home page to your linking.
-    </p>
 
-    <h2>Required links</h2>
-    <ul>
-        <li>
-            <a href="project/index.html">Project</a>
-        </li>
-        <li>
-            <a href="assignment/index.html">Assignment</a>
-        </li>
-        <li>
-            <a href="database/index.html">Database Project</a>
-        </li>
-        <li>
-            <a href="test/index.html">Test MongoDB</a>
-        </li>
-        <li>
-            <a href="https://github.com/sxjzc01/jin-zechen-webdev">Your public repository at GitHub.com</a>
-        </li>
-    </ul>
+                        <label><h1>Introduction</h1></label>
+
+                        <div class="jumbotron">
+                            <h1>This is Zechen Jin's website</h1>
+                            <h2>Hi, everyone. Welcome to my website.
+                                My name is Zechen Jin. I am a CS major undergrate. I come from China.
+                                I like watching movies, playing video games and reading history.
+                                I am willing to make friends with different people.</h2>
+
+                        </div>
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <img src="http://localhost:63342/webdev/me.jpg" alt="Myself" style="width:300px;height:528px;">
+            <h3>Me(left) and my friend(right)</h3>
+        </div>
+    </div>
 </body>
+</div>
 </html>

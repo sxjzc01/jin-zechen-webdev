@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('demo')
+        .module('WebAppMaker')
         .factory('apiService', apiService);
 
 
